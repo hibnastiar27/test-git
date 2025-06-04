@@ -3,46 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Landing Page</title>
+    <meta name="theme-color" content="#6c5ce7" />
+    <title>Spark Pay - Modern Crypto Payment Solution</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Courier New", monospace;
+        font-family: "Poppins", sans-serif;
       }
 
       body {
-        background-color: #ffffff;
-        color: #000000;
-        line-height: 1.4;
+        background-color: #121212;
+        color: #ffffff;
+        line-height: 1.6;
       }
 
       header {
-        background-color: #000000;
-        color: #ffffff;
-        padding: 1rem;
+        background-color: rgba(18, 18, 18, 0.8);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 1rem 2rem;
         position: fixed;
         width: 100%;
         z-index: 100;
-        border-bottom: 4px solid #ff0000;
+        box-shadow: 0 4px 20px rgba(108, 92, 231, 0.2);
+        transition: all 0.3s ease;
       }
 
       header.scrolled {
-        padding: 1rem;
+        padding: 0.8rem 2rem;
       }
 
       nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
       .logo {
         font-size: 1.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo::before {
+        content: "⚡";
+        margin-right: 8px;
       }
 
       .nav-links {
@@ -57,82 +78,129 @@
       .nav-links a {
         color: #ffffff;
         text-decoration: none;
-        text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
       }
 
-      .nav-links a:hover {
-        color: #ff0000;
-        text-decoration: none;
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
       }
 
       .hero {
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        background-color: #000000;
-        color: #ffffff;
-        padding: 0 1rem;
-        border-bottom: 8px solid #ff0000;
+        background: radial-gradient(circle at top right, #2d3436, #121212);
+        color: white;
+        padding: 0 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          rgba(108, 92, 231, 0.3),
+          rgba(0, 206, 201, 0.3)
+        );
+        filter: blur(80px);
+        top: -100px;
+        right: -100px;
+        z-index: 0;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          rgba(253, 121, 168, 0.2),
+          rgba(108, 92, 231, 0.2)
+        );
+        filter: blur(80px);
+        bottom: -100px;
+        left: -100px;
+        z-index: 0;
       }
 
       .hero-content {
         max-width: 800px;
-        border: 4px solid #ffffff;
-        padding: 2rem;
+        position: relative;
+        z-index: 1;
       }
 
       .hero h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 3px;
+        font-weight: 700;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
       .hero p {
         font-size: 1.2rem;
         margin-bottom: 2rem;
-        opacity: 1;
+        color: #a0a0a0;
       }
 
       .btn {
         display: inline-block;
-        background-color: #ff0000;
-        color: #ffffff;
-        padding: 1rem 2rem;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
         text-decoration: none;
-        font-weight: bold;
+        font-weight: 600;
+        transition: all 0.3s ease;
         border: none;
         cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        opacity: 1;
+        box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
       }
 
       .btn:hover {
-        background-color: #ffffff;
-        color: #000000;
-        transform: none;
-        box-shadow: none;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
       }
 
       .features {
-        padding: 5rem 1rem;
-        background-color: #ffffff;
-        border-bottom: 8px solid #000000;
+        padding: 6rem 2rem;
+        background-color: #1a1a1a;
+        position: relative;
       }
 
       .section-title {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         font-size: 2.5rem;
-        color: #000000;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        border-bottom: 4px solid #000000;
-        padding-bottom: 1rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
       .features-container {
@@ -144,43 +212,71 @@
       }
 
       .feature-card {
-        background-color: #ffffff;
-        border: 4px solid #000000;
+        background: rgba(30, 30, 30, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
         padding: 2rem;
         text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(108, 92, 231, 0.2);
       }
 
       .feature-card:hover {
-        transform: none;
-        box-shadow: none;
-        background-color: #000000;
-        color: #ffffff;
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+        border: 1px solid rgba(108, 92, 231, 0.5);
       }
 
       .feature-icon {
         font-size: 3rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
       .feature-card h3 {
         margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      .feature-card p {
+        color: #a0a0a0;
       }
 
       .cta {
-        background-color: #ff0000;
-        color: #ffffff;
+        background: linear-gradient(45deg, #121212, #2d3436);
+        color: white;
         text-align: center;
-        padding: 5rem 1rem;
-        border-bottom: 8px solid #000000;
+        padding: 6rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          rgba(108, 92, 231, 0.2),
+          rgba(0, 206, 201, 0.2)
+        );
+        filter: blur(80px);
+        top: -150px;
+        right: -150px;
       }
 
       .cta h2 {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 3px;
+        font-weight: 700;
+        position: relative;
       }
 
       .cta p {
@@ -189,40 +285,91 @@
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        color: #a0a0a0;
+        position: relative;
       }
 
       footer {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: #121212;
+        color: white;
         text-align: center;
-        padding: 2rem;
-        border-top: 4px solid #ff0000;
+        padding: 3rem 2rem;
+        position: relative;
       }
 
       .social-links {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
       }
 
       .social-links a {
-        color: #ffffff;
-        margin: 0 10px;
+        color: #a0a0a0;
         font-size: 1.2rem;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(30, 30, 30, 0.6);
+        border: 1px solid rgba(108, 92, 231, 0.2);
       }
 
       .social-links a:hover {
-        color: #ff0000;
+        color: #ffffff;
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        transform: translateY(-3px);
       }
 
       .menu-btn {
         display: none;
         background: none;
         border: none;
-        color: #ffffff;
+        color: white;
         font-size: 1.5rem;
         cursor: pointer;
+      }
+
+      .install-prompt {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(30, 30, 30, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        display: none;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        border: 1px solid rgba(108, 92, 231, 0.3);
+      }
+
+      .install-prompt p {
+        margin: 0;
+      }
+
+      .install-btn {
+        background: linear-gradient(45deg, #6c5ce7, #00cec9);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .close-prompt {
+        background: none;
+        border: none;
+        color: #a0a0a0;
+        cursor: pointer;
+        font-size: 1.2rem;
       }
 
       @media (max-width: 768px) {
@@ -236,11 +383,13 @@
           right: -100%;
           width: 70%;
           height: 100vh;
-          background-color: #000000;
+          background: rgba(18, 18, 18, 0.95);
+          backdrop-filter: blur(10px);
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          border-left: 4px solid #ff0000;
+          transition: all 0.5s ease;
+          z-index: 101;
         }
 
         .nav-links.active {
@@ -275,8 +424,9 @@
       <div class="hero-content">
         <h1>Sarana Performa Sejahtera</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Next-generation cryptocurrency payment platform with secure
+          transactions, low fees, and instant settlements across multiple
+          blockchains.
         </p>
         <a href="#features" class="btn">Get Started</a>
       </div>
@@ -286,52 +436,59 @@
       <h2 class="section-title">Our Features</h2>
       <div class="features-container">
         <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3>Fast & Reliable</h3>
+          <div class="feature-icon">⚡</div>
+          <h3>Fast Transactions</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore.
+            Lightning-fast payment processing with confirmation times under 5
+            seconds across all supported blockchains.
           </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
-          <h3>Secure</h3>
+          <h3>Bank-Grade Security</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore.
+            Enterprise-level encryption and multi-signature technology to keep
+            your digital assets safe and secure.
           </p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💡</div>
-          <h3>Innovative</h3>
+          <div class="feature-icon">💱</div>
+          <h3>Multi-Chain Support</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore.
+            Seamlessly transact across Bitcoin, Ethereum, Solana, and other
+            major blockchain networks from one platform.
           </p>
         </div>
       </div>
     </section>
 
     <section class="cta" id="about">
-      <h2>Ready to Get Started?</h2>
+      <h2>Ready to Transform Your Payments?</h2>
       <p>
-        Join thousands of satisfied customers who have transformed their
-        business with our platform.
+        Join thousands of businesses already using Spark Pay to accept
+        cryptocurrency payments and grow their digital economy presence.
       </p>
       <a href="#contact" class="btn">Contact Us</a>
     </section>
 
     <footer id="contact">
       <h3>Contact Us</h3>
-      <p>Email: info@example.com</p>
+      <p>Email: info@sparkpay.io</p>
       <p>Phone: +123 456 7890</p>
       <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
+        <a href="#">FB</a>
+        <a href="#">TW</a>
+        <a href="#">IG</a>
+        <a href="#">TG</a>
       </div>
       <p>&copy; 2025 Sarana Performa Sejahtera. All rights reserved.</p>
     </footer>
+
+    <div class="install-prompt" id="installPrompt">
+      <p>Install Spark Pay for offline access</p>
+      <button class="install-btn" id="installBtn">Install</button>
+      <button class="close-prompt" id="closePrompt">×</button>
+    </div>
 
     <script>
       // Header scroll effect
@@ -368,9 +525,43 @@
         });
       });
 
-      // No animations in brutalist design
+      // Service Worker Registration for PWA
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((reg) => console.log("Service Worker registered"))
+            .catch((err) =>
+              console.log("Service Worker registration failed", err)
+            );
+        });
+      }
 
-      // No animations for brutalist design
+      // PWA Install Prompt
+      let deferredPrompt;
+      const installPrompt = document.getElementById("installPrompt");
+      const installBtn = document.getElementById("installBtn");
+      const closePrompt = document.getElementById("closePrompt");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installPrompt.style.display = "flex";
+      });
+
+      installBtn.addEventListener("click", () => {
+        installPrompt.style.display = "none";
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            deferredPrompt = null;
+          });
+        }
+      });
+
+      closePrompt.addEventListener("click", () => {
+        installPrompt.style.display = "none";
+      });
     </script>
   </body>
 </html>
